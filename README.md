@@ -1,0 +1,2 @@
+# emac.d
+ emacs-config
