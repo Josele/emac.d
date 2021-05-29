@@ -1,0 +1,6 @@
+[submodule "vendor/powerline-evil"]
+	path = vendor/powerline-evil
+	url = https://github.com/johnson-christopher/powerline-evil
+[submodule "vendor/emacs-powerline"]
+	path = vendor/emacs-powerline
+	url = https://github.com/milkypostman/powerline.git
