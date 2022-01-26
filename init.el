@@ -41,10 +41,12 @@
 (require 'powerline-evil)
 (powerline-evil-vim-color-theme)
 
-;; Getting evil and bind to key
+;; Getting evil, configure and bind to key
 (use-package evil
-	     :ensure t)
+  :ensure t)
+(define-key evil-normal-state-map (kbd "C-r") 'undo-redo)
 (global-set-key (kbd "<f12>") 'evil-mode)
+(add-hook 'evil-mode (show-paren-mode t))
 
 ;; Tabs to 4
 (setq-default tab-width 4)
@@ -65,7 +67,7 @@
     ))
 
 
-;; Experimental feiatures
+;; Experimental features
 ;; Emacs as a C++ IDE
 (setq c-default-style "linux"
       c-basic-offset 4)
@@ -93,6 +95,19 @@
 (add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-newline 1)))
 
 ;;(add-hook 'c-mode-common-hook 'compact-format)
+
+;; Emacs ts and js
+(use-package js2-mode)
+(add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . js2-mode))
+(use-package js2-refactor)
+(add-hook 'js2-mode-hook
+		  (lambda ()
+			(setq js2-basic-offset 4)
+			(setq indent-tabs-mode nil)
+			))
+(add-hook 'js2-mode-hook #'js2-refactor-mode)
+
 ;; ;;Projectile: This library provides easy project management and navigation
 (require 'subr-x)
 (use-package projectile
@@ -104,7 +119,8 @@
               ("C-x p" . projectile-command-map)))
 
 (setq projectile-project-search-path '("~/Source/cpp_workarea/"))
-
+;;
+(use-package typescript-mode)
 ;; lsp-mode for using emacs as IDE
 (defun efs/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
@@ -141,7 +157,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (projectile company python-mode lsp-mode evil-escape which-key use-package evil))))
+	(js2-refactor js2-mode projectile company python-mode lsp-mode evil-escape which-key use-package evil))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
