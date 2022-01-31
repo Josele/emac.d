@@ -38,8 +38,6 @@
 ;;Utilities for better Evil support for Powerline
 ;;https://github.com/johnson-christopher/powerline-evil.
 (add-to-list 'load-path "~/.emacs.d/vendor/powerline-evil")
-(require 'powerline-evil)
-(powerline-evil-vim-color-theme)
 
 ;; Getting evil, configure and bind to key
 (use-package evil
@@ -47,7 +45,8 @@
 (define-key evil-normal-state-map (kbd "C-r") 'undo-redo)
 (global-set-key (kbd "<f12>") 'evil-mode)
 (add-hook 'evil-mode (show-paren-mode t))
-
+(require 'powerline-evil)
+(powerline-evil-vim-color-theme)
 ;; Tabs to 4
 (setq-default tab-width 4)
 
