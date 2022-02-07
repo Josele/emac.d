@@ -49,7 +49,8 @@
 (powerline-evil-vim-color-theme)
 ;; Tabs to 4
 (setq-default tab-width 4)
-
+;;Fine undo 
+(setq evil-want-fine-undo t) 
 ;; Other bindings
 (global-set-key [f1] 'compare-windows)
 (global-set-key [f2] 'compile)
